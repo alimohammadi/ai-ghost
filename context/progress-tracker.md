@@ -9,7 +9,7 @@ change.
 
 ## Current Goal
 
-- Implement design system with shadcn/ui components and utilities
+- Build editor pages and features
 
 ## Completed
 
@@ -18,6 +18,12 @@ change.
 - ✓ Created lib/utils.ts with cn() helper for Tailwind class merging
 - ✓ Verified dark theme integration in globals.css
 - ✓ Build verification passed with zero errors
+- ✓ Initial Git commit and push to GitHub
+- ✓ Created EditorNavbar with sidebar toggle (PanelLeftOpen/PanelLeftClose icons)
+- ✓ Created ProjectSidebar with floating overlay, Tabs (My Projects/Shared), and New Project button
+- ✓ Set up Dialog pattern types and interfaces
+- ✓ All components compile without TypeScript errors
+- ✓ No lint errors
 
 ## In Progress
 
@@ -25,7 +31,7 @@ change.
 
 ## Next Up
 
-- [First unit to build]
+- Create editor layout page that integrates navbar and sidebar
 
 ## Open Questions
 
