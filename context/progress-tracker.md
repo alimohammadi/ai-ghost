@@ -24,6 +24,8 @@ change.
 - ✓ Set up Dialog pattern types and interfaces
 - ✓ All components compile without TypeScript errors
 - ✓ No lint errors
+- ✓ Created editor layout integrating navbar and sidebar with state management
+- ✓ Created editor page demonstrating the layout in action
 
 ## In Progress
 
@@ -31,7 +33,7 @@ change.
 
 ## Next Up
 
-- Create editor layout page that integrates navbar and sidebar
+- [Next feature to build]
 
 ## Open Questions
 
