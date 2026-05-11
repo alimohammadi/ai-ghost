@@ -9,7 +9,7 @@ change.
 
 ## Current Goal
 
-- Implement Clerk authentication: provider, auth pages, route protection, redirects, and editor user menu
+- Build `/editor` home screen and project dialogs: Create, Rename, Delete dialogs; slug preview; sidebar actions
 
 ## Completed
 
@@ -26,14 +26,17 @@ change.
 - ✓ No lint errors
 - ✓ Created editor layout integrating navbar and sidebar with state management
 - ✓ Created editor page demonstrating the layout in action
+- ✓ Implemented Clerk authentication: provider, auth pages, route protection (proxy.ts), redirects, and UserButton in navbar
+- ✓ Fixed dark mode rendering in Clerk components (UserButton dropdown)
+- ✓ Merged development → main and pushed to GitHub
 
 ## In Progress
 
-- Clerk auth integration from `context/feature-specs/03-auth.md`
+- Editor home screen and project dialogs from `context/feature-specs/04-project-dialogs.md`
 
 ## Next Up
 
-- Verify auth behavior in the browser after Clerk routes are wired
+- Add project data persistence (API integration)
 
 ## Open Questions
 

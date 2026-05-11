@@ -1,16 +1,24 @@
 "use client"
 
-import { Plus, X } from "lucide-react"
+import { Plus, FileText, Pencil, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
+import { Project } from "@/types/project"
 
 export interface ProjectSidebarProps {
   isOpen: boolean
   onClose: () => void
+  projects: Project[]
+  onRename: (project: Project) => void
+  onDelete: (project: Project) => void
+  onCreate: () => void
 }
 
-export function ProjectSidebar({ isOpen, onClose }: ProjectSidebarProps) {
+export function ProjectSidebar({ isOpen, onClose, projects, onRename, onDelete, onCreate }: ProjectSidebarProps) {
+  const myProjects = projects.filter((p) => p.isOwner)
+  const sharedProjects = projects.filter((p) => !p.isOwner)
+
   return (
     <>
       {/* Overlay backdrop */}
@@ -41,7 +49,21 @@ export function ProjectSidebar({ isOpen, onClose }: ProjectSidebarProps) {
             onClick={onClose}
             aria-label="Close sidebar"
           >
-            <X className="h-5 w-5" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-5 w-5"
+            >
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
           </Button>
         </div>
 
@@ -53,29 +75,79 @@ export function ProjectSidebar({ isOpen, onClose }: ProjectSidebarProps) {
               <TabsTrigger value="shared">Shared</TabsTrigger>
             </TabsList>
 
-            <TabsContent
-              value="my-projects"
-              className="flex-1 flex items-center justify-center text-muted-foreground"
-            >
-              <div className="text-center">
-                <p className="text-sm">No projects yet</p>
-              </div>
+            {/* My Projects */}
+            <TabsContent value="my-projects" className="flex-1 overflow-y-auto -mx-4 px-4 space-y-1">
+              {myProjects.length === 0 ? (
+                <div className="text-center py-8 text-muted-foreground">
+                  <p className="text-sm">No projects yet</p>
+                </div>
+              ) : (
+                myProjects.map((project) => (
+                  <div
+                    key={project.id}
+                    className="group flex items-center justify-between rounded-lg px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground transition-colors"
+                  >
+                    <button className="flex-1 flex items-center gap-2 text-left min-w-0">
+                      <FileText className="h-4 w-4 text-muted-foreground shrink-0" />
+                      <span className="truncate">{project.name}</span>
+                    </button>
+                    <div className="flex items-center gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          onRename(project)
+                        }}
+                        title="Rename"
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-destructive hover:text-destructive"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          onDelete(project)
+                        }}
+                        title="Delete"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                ))
+              )}
             </TabsContent>
 
-            <TabsContent
-              value="shared"
-              className="flex-1 flex items-center justify-center text-muted-foreground"
-            >
-              <div className="text-center">
-                <p className="text-sm">No shared projects</p>
-              </div>
+            {/* Shared */}
+            <TabsContent value="shared" className="flex-1 overflow-y-auto -mx-4 px-4 space-y-1">
+              {sharedProjects.length === 0 ? (
+                <div className="text-center py-8 text-muted-foreground">
+                  <p className="text-sm">No shared projects</p>
+                </div>
+              ) : (
+                sharedProjects.map((project) => (
+                  <div
+                    key={project.id}
+                    className="group flex items-center rounded-lg px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground transition-colors"
+                  >
+                    <button className="flex-1 flex items-center gap-2 text-left">
+                      <FileText className="h-4 w-4 text-muted-foreground" />
+                      <span className="truncate">{project.name}</span>
+                    </button>
+                  </div>
+                ))
+              )}
             </TabsContent>
           </Tabs>
         </div>
 
         {/* Footer button */}
         <div className="p-4 border-t border-border">
-          <Button variant="default" size="default" className="w-full">
+          <Button variant="default" size="default" className="w-full" onClick={onCreate}>
             <Plus className="h-4 w-4 mr-2" />
             New Project
           </Button>
