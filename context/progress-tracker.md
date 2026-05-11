@@ -9,7 +9,7 @@ change.
 
 ## Current Goal
 
-- Build editor pages and features
+- Implement Clerk authentication: provider, auth pages, route protection, redirects, and editor user menu
 
 ## Completed
 
@@ -29,11 +29,11 @@ change.
 
 ## In Progress
 
-- None
+- Clerk auth integration from `context/feature-specs/03-auth.md`
 
 ## Next Up
 
-- [Next feature to build]
+- Verify auth behavior in the browser after Clerk routes are wired
 
 ## Open Questions
 
@@ -46,4 +46,4 @@ change.
 
 ## Session Notes
 
-- [Context needed to resume work in the next session]
+- Auth spec requires `proxy.ts` at the project root, Clerk dark theme from `@clerk/ui/themes`, public sign-in/sign-up routes only, `/` redirect behavior, and Clerk `UserButton` in the editor navbar.
