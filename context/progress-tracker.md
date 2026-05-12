@@ -9,7 +9,7 @@ change.
 
 ## Current Goal
 
-- Build `/editor` home screen and project dialogs: Create, Rename, Delete dialogs; slug preview; sidebar actions
+- Implement Prisma data models, Prisma client singleton, and first migration
 
 ## Completed
 
@@ -29,14 +29,15 @@ change.
 - ✓ Implemented Clerk authentication: provider, auth pages, route protection (proxy.ts), redirects, and UserButton in navbar
 - ✓ Fixed dark mode rendering in Clerk components (UserButton dropdown)
 - ✓ Merged development → main and pushed to GitHub
+- ✓ Built `/editor` home screen and project dialogs: Create, Rename, Delete dialogs; slug preview; sidebar actions
 
 ## In Progress
 
-- Editor home screen and project dialogs from `context/feature-specs/04-project-dialogs.md`
+- Prisma implementation: data models, Prisma client singleton, and first migration from `context/feature-specs/05-prisma.md`
 
 ## Next Up
 
-- Add project data persistence (API integration)
+- Add API routes and server actions for project persistence
 
 ## Open Questions
 
