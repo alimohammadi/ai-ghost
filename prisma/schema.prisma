@@ -1,5 +1,14 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+datasource db {
+  provider = "postgresql"
+}
+
 // Note: datasource configuration is in prisma.config.ts
 // No need to define datasource or import files here — all .prisma files in this directory are merged.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../prisma/app/generated/prisma"
+}

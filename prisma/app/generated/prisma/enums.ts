@@ -9,9 +9,9 @@
 * 🟢 You can import this file directly.
 */
 
-export const Status = {
+export const ProjectStatus = {
   DRAFT: 'DRAFT',
   ARCHIVED: 'ARCHIVED'
 } as const
 
-export type Status = (typeof Status)[keyof typeof Status]
+export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]

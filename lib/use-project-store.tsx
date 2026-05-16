@@ -38,9 +38,27 @@ const ProjectContext = createContext<ProjectContextType | null>(null)
 
 // Provider component
 export function ProjectProvider({ children }: { children: ReactNode }) {
-  const [projects, setProjects] = useState<Project[]>([
-    { id: "1", name: "First Project", slug: "first-project", isOwner: true },
-    { id: "2", name: "Collaborative Draft", slug: "collaborative-draft", isOwner: false },
+const [projects, setProjects] = useState<Project[]>([
+    {
+      id: "1",
+      name: "First Project",
+      slug: "first-project",
+      isOwner: true,
+      status: "DRAFT",
+      ownerId: "user-1",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      id: "2",
+      name: "Collaborative Draft",
+      slug: "collaborative-draft",
+      isOwner: false,
+      status: "DRAFT",
+      ownerId: "user-2",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
   ])
 
   const [createOpen, setCreateOpen] = useState(false)
@@ -90,16 +108,21 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
 
   const closeDelete = () => setDeleteOpen(false)
 
-  const addProject = (name: string, slug: string) => {
-    const newProject: Project = {
-      id: Date.now().toString(),
-      name,
-      slug,
-      isOwner: true,
-    }
-    setProjects(prev => [...prev, newProject])
-    closeCreate()
-  }
+const now = new Date().toISOString()
+   const addProject = (name: string, slug: string) => {
+     const newProject: Project = {
+       id: Date.now().toString(),
+       name,
+       slug,
+       isOwner: true,
+       status: "DRAFT",
+       ownerId: "user",
+       createdAt: now,
+       updatedAt: now,
+     }
+     setProjects(prev => [...prev, newProject])
+     closeCreate()
+   }
 
   const updateProject = (id: string, name: string) => {
     setProjects(prev => prev.map(p => (p.id === id ? { ...p, name } : p)))

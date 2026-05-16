@@ -29,7 +29,7 @@ export type ProjectMinAggregateOutputType = {
   ownerId: string | null
   name: string | null
   description: string | null
-  status: $Enums.Status | null
+  status: $Enums.ProjectStatus | null
   canvasJsonPath: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -40,7 +40,7 @@ export type ProjectMaxAggregateOutputType = {
   ownerId: string | null
   name: string | null
   description: string | null
-  status: $Enums.Status | null
+  status: $Enums.ProjectStatus | null
   canvasJsonPath: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -170,7 +170,7 @@ export type ProjectGroupByOutputType = {
   ownerId: string
   name: string
   description: string | null
-  status: $Enums.Status
+  status: $Enums.ProjectStatus
   canvasJsonPath: string | null
   createdAt: Date
   updatedAt: Date
@@ -202,7 +202,7 @@ export type ProjectWhereInput = {
   ownerId?: Prisma.StringFilter<"Project"> | string
   name?: Prisma.StringFilter<"Project"> | string
   description?: Prisma.StringNullableFilter<"Project"> | string | null
-  status?: Prisma.EnumStatusFilter<"Project"> | $Enums.Status
+  status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   canvasJsonPath?: Prisma.StringNullableFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
@@ -229,7 +229,7 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   ownerId?: Prisma.StringFilter<"Project"> | string
   name?: Prisma.StringFilter<"Project"> | string
   description?: Prisma.StringNullableFilter<"Project"> | string | null
-  status?: Prisma.EnumStatusFilter<"Project"> | $Enums.Status
+  status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   canvasJsonPath?: Prisma.StringNullableFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
@@ -258,7 +258,7 @@ export type ProjectScalarWhereWithAggregatesInput = {
   ownerId?: Prisma.StringWithAggregatesFilter<"Project"> | string
   name?: Prisma.StringWithAggregatesFilter<"Project"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
-  status?: Prisma.EnumStatusWithAggregatesFilter<"Project"> | $Enums.Status
+  status?: Prisma.EnumProjectStatusWithAggregatesFilter<"Project"> | $Enums.ProjectStatus
   canvasJsonPath?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
@@ -269,7 +269,7 @@ export type ProjectCreateInput = {
   ownerId: string
   name: string
   description?: string | null
-  status?: $Enums.Status
+  status?: $Enums.ProjectStatus
   canvasJsonPath?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -281,7 +281,7 @@ export type ProjectUncheckedCreateInput = {
   ownerId: string
   name: string
   description?: string | null
-  status?: $Enums.Status
+  status?: $Enums.ProjectStatus
   canvasJsonPath?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -293,7 +293,7 @@ export type ProjectUpdateInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   canvasJsonPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -305,7 +305,7 @@ export type ProjectUncheckedUpdateInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   canvasJsonPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -317,7 +317,7 @@ export type ProjectCreateManyInput = {
   ownerId: string
   name: string
   description?: string | null
-  status?: $Enums.Status
+  status?: $Enums.ProjectStatus
   canvasJsonPath?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -328,7 +328,7 @@ export type ProjectUpdateManyMutationInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   canvasJsonPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -339,7 +339,7 @@ export type ProjectUncheckedUpdateManyInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   canvasJsonPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -391,8 +391,8 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
-export type EnumStatusFieldUpdateOperationsInput = {
-  set?: $Enums.Status
+export type EnumProjectStatusFieldUpdateOperationsInput = {
+  set?: $Enums.ProjectStatus
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -418,7 +418,7 @@ export type ProjectCreateWithoutCollaboratorsInput = {
   ownerId: string
   name: string
   description?: string | null
-  status?: $Enums.Status
+  status?: $Enums.ProjectStatus
   canvasJsonPath?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -429,7 +429,7 @@ export type ProjectUncheckedCreateWithoutCollaboratorsInput = {
   ownerId: string
   name: string
   description?: string | null
-  status?: $Enums.Status
+  status?: $Enums.ProjectStatus
   canvasJsonPath?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -456,7 +456,7 @@ export type ProjectUpdateWithoutCollaboratorsInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   canvasJsonPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -467,7 +467,7 @@ export type ProjectUncheckedUpdateWithoutCollaboratorsInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   canvasJsonPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -568,7 +568,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     ownerId: string
     name: string
     description: string | null
-    status: $Enums.Status
+    status: $Enums.ProjectStatus
     canvasJsonPath: string | null
     createdAt: Date
     updatedAt: Date
@@ -1000,7 +1000,7 @@ export interface ProjectFieldRefs {
   readonly ownerId: Prisma.FieldRef<"Project", 'String'>
   readonly name: Prisma.FieldRef<"Project", 'String'>
   readonly description: Prisma.FieldRef<"Project", 'String'>
-  readonly status: Prisma.FieldRef<"Project", 'Status'>
+  readonly status: Prisma.FieldRef<"Project", 'ProjectStatus'>
   readonly canvasJsonPath: Prisma.FieldRef<"Project", 'String'>
   readonly createdAt: Prisma.FieldRef<"Project", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Project", 'DateTime'>

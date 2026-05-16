@@ -27,21 +27,29 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  const { userId } = await auth()
-  if (!userId) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  try {
+    const { userId } = await auth()
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    const body = await req.json().catch(() => ({}));
+    const name = (body.name as string)?.trim() || "Untitled Project";
+
+    const project = await prisma.project.create({
+      data: {
+        ownerId: userId,
+        name,
+        status: "DRAFT",
+      },
+    });
+
+    return NextResponse.json(project, { status: 201 });
+  } catch (err) {
+    console.error("POST /api/projects error:", err)
+    return NextResponse.json(
+      { error: err instanceof Error ? err.message : "Internal server error" },
+      { status: 500 },
+    )
   }
-
-  const body = await req.json().catch(() => ({}));
-  const name = (body.name as string)?.trim() || "Untitled Project";
-
-  const project = await prisma.project.create({
-    data: {
-      ownerId: userId,
-      name,
-      status: "DRAFT",
-    },
-  });
-
-  return NextResponse.json(project, { status: 201 });
 }

@@ -9,7 +9,7 @@ change.
 
 ## Current Goal
 
-- Implement Prisma data models, Prisma client singleton, and first migration
+- Add API routes and server actions for project persistence
 
 ## Completed
 
@@ -30,14 +30,19 @@ change.
 - ✓ Fixed dark mode rendering in Clerk components (UserButton dropdown)
 - ✓ Merged development → main and pushed to GitHub
 - ✓ Built `/editor` home screen and project dialogs: Create, Rename, Delete dialogs; slug preview; sidebar actions
+- ✓ Implemented Prisma data models, Prisma client singleton, and first migration
+- ✓ Fixed Prisma migration error (table `Project` not found) by running migration
+- ✓ Fixed Prisma client type error (Prisma 7 requires adapter or accelerateUrl)
+- ✓ Fixed 500 error on POST /api/projects (added error handling, simplified Prisma client init)
+- ✓ Fixed `type "public.Status" does not exist` error via `prisma db push --force-reset`
 
 ## In Progress
 
-- Prisma implementation: data models, Prisma client singleton, and first migration from `context/feature-specs/05-prisma.md`
+- Add API routes and server actions for project persistence
 
 ## Next Up
 
-- Add API routes and server actions for project persistence
+- Implement real-time collaboration features
 
 ## Open Questions
 
@@ -51,3 +56,7 @@ change.
 ## Session Notes
 
 - Auth spec requires `proxy.ts` at the project root, Clerk dark theme from `@clerk/ui/themes`, public sign-in/sign-up routes only, `/` redirect behavior, and Clerk `UserButton` in the editor navbar.
+- **2026-05-15:** Fixed 500 error on POST /api/projects by:
+  - Adding try/catch error handling to the POST handler with detailed error message in response
+  - Simplifying Prisma client singleton to pass DATABASE_URL string directly to PrismaPg constructor
+  - Adding guard to throw if DATABASE_URL is undefined
